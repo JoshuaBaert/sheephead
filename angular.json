@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "sheephead": {
+    "sheepshead": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/sheephead",
+            "outputPath": "dist/sheepshead",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -70,18 +70,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "sheephead:build"
+            "browserTarget": "sheepshead:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "sheephead:build:production"
+              "browserTarget": "sheepshead:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "sheephead:build"
+            "browserTarget": "sheepshead:build"
           }
         },
         "test": {
@@ -119,15 +119,15 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "sheephead:serve"
+            "devServerTarget": "sheepshead:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "sheephead:serve:production"
+              "devServerTarget": "sheepshead:serve:production"
             }
           }
         }
       }
     }},
-  "defaultProject": "sheephead"
+  "defaultProject": "sheepshead"
 }
