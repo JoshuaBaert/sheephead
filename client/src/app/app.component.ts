@@ -61,6 +61,29 @@ const trumpOrder = [
   },
 ];
 
+const point = [
+  {
+    card: 'A',
+    value: 11,
+  },
+  {
+    card: '10',
+    value: 10,
+  },
+  {
+    card: 'K',
+    value: 4,
+  },
+  {
+    card: 'Q',
+    value: 3,
+  },
+  {
+    card: 'J',
+    value: 2,
+  },
+];
+
 @Component({
   selector: 'app-root',
   encapsulation: ViewEncapsulation.None,
@@ -123,9 +146,18 @@ const trumpOrder = [
       </div>
 
       <div class="main-container">
-        <div class="point-summary"></div>
+        <div class="point-summary">
+          <h4>Card Values</h4>
+          <div class="points-table">
+            <div class="points-cards"></div>
 
-        <div class="fail-summary"></div>
+            <div class="points-values"></div>
+          </div>
+        </div>
+
+        <div class="fail-summary">
+
+        </div>
       </div>
     </div>
   `,
