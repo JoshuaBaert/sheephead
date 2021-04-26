@@ -75,8 +75,6 @@ const trumpOrder = [
       display: flex;
       flex-direction: row;
       height: 100%;
-      margin-top: 2%;
-      margin-bottom: 2%;
     }
 
     #trump-suits, #trump-cards {
@@ -87,12 +85,13 @@ const trumpOrder = [
     }
 
     #trump-suits {
-      min-width: 35px;
+      min-width: 38px;
       align-items: center;
     }
 
     .trump-card {
-      font-size: 40px;
+      font-size: calc(calc(100vh / ${trumpOrder.length}) * .90);
+      height: calc(100vh / ${trumpOrder.length});
     }
 
     .clubs {
