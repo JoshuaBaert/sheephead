@@ -61,7 +61,7 @@ const trumpOrder = [
   },
 ];
 
-const point = [
+const pointTable = [
   {
     card: 'A',
     value: 11,
@@ -84,53 +84,34 @@ const point = [
   },
 ];
 
+const failTable = [
+  {
+    card: 'A',
+  },
+  {
+    card: '10',
+  },
+  {
+    card: 'K',
+  },
+  {
+    card: '9',
+  },
+  {
+    card: '8',
+  },
+  {
+    card: '7',
+  },
+];
+
 @Component({
   selector: 'app-root',
   encapsulation: ViewEncapsulation.None,
   styles: [`
-    .main {
-      display: flex;
-      flex-direction: row;
-      min-height: 100vh;
-    }
-
-    .trump-container {
-      display: flex;
-      flex-direction: row;
-      height: 100%;
-    }
-
-    #trump-suits, #trump-cards {
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-
-    }
-
-    #trump-suits {
-      min-width: 38px;
-      align-items: center;
-    }
-
     .trump-card {
-      font-size: calc(calc(100vh / ${trumpOrder.length}) * .90);
-      height: calc(100vh / ${trumpOrder.length});
-    }
-
-    .clubs {
-      color: black;
-    }
-    .spades {
-      color: black;
-    }
-    .hearts {
-      color: red;
-    }
-    .diams {
-      color: red;
-    }
-    .suit {
-      min-width: 15px
+      font-size: calc(calc(100vh / ${trumpOrder.length + 1}) * .90);
+      height: calc(calc(100vh / ${trumpOrder.length}) - 1px);
     }
   `],
   template: `
@@ -147,16 +128,23 @@ const point = [
 
       <div class="main-container">
         <div class="point-summary">
-          <h4>Card Values</h4>
+          <h2>Card Point Values</h2>
           <div class="points-table">
-            <div class="points-cards"></div>
+            <div class="points-cards">
+              <div *ngFor="let row of pointTable">{{row.card}}</div>
+            </div>
 
-            <div class="points-values"></div>
+            <div class="points-values">
+              <div *ngFor="let row of pointTable">{{row.value}}</div>
+            </div>
           </div>
         </div>
 
         <div class="fail-summary">
-
+          <h2>Fail (Non Trump)</h2>
+          <div class="fail-cards">
+            <div *ngFor="let card of failTable">{{card.card}}</div>
+          </div>
         </div>
       </div>
     </div>
@@ -164,8 +152,10 @@ const point = [
 })
 export class AppComponent {
   trumpOrder = trumpOrder;
+  pointTable = pointTable;
+  failTable = failTable;
 
-  formatCardText(trump) {
+  formatCardText(trump): string {
     return `<span class="suit ${trump.suit}">&${trump.suit};</span>`;
   }
 }
