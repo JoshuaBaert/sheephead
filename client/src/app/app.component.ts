@@ -1,117 +1,14 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 
-const trumpOrder = [
-  {
-    suit: 'clubs',
-    card: 'Q',
-    isFirstQueen: true,
-  },
-  {
-    suit: 'diams',
-    card: '7',
-  },
-  {
-    suit: 'spades',
-    card: 'Q',
-  },
-  {
-    suit: 'hearts',
-    card: 'Q',
-  },
-  {
-    suit: 'diams',
-    card: 'Q',
-  },
-  {
-    suit: 'clubs',
-    card: 'J',
-    isFirstJack: true,
-  },
-  {
-    suit: 'spades',
-    card: 'J',
-  },
-  {
-    suit: 'hearts',
-    card: 'J',
-  },
-  {
-    suit: 'diams',
-    card: 'J',
-  },
-  {
-    suit: 'diams',
-    card: 'A',
-  },
-  {
-    suit: 'diams',
-    card: '10',
-  },
-  {
-    suit: 'diams',
-    card: 'K',
-  },
-  {
-    suit: 'diams',
-    card: '9',
-  },
-  {
-    suit: 'diams',
-    card: '8',
-  },
-];
-
-const pointTable = [
-  {
-    card: 'A',
-    value: 11,
-  },
-  {
-    card: '10',
-    value: 10,
-  },
-  {
-    card: 'K',
-    value: 4,
-  },
-  {
-    card: 'Q',
-    value: 3,
-  },
-  {
-    card: 'J',
-    value: 2,
-  },
-];
-
-const failTable = [
-  {
-    card: 'A',
-  },
-  {
-    card: '10',
-  },
-  {
-    card: 'K',
-  },
-  {
-    card: '9',
-  },
-  {
-    card: '8',
-  },
-  {
-    card: '7',
-  },
-];
+const numberOfTrump = 14;
 
 @Component({
   selector: 'app-root',
   encapsulation: ViewEncapsulation.None,
   styles: [`
     .trump-card {
-      font-size: calc(calc(100vh / ${trumpOrder.length + 1}) * .90);
-      height: calc(calc(100vh / ${trumpOrder.length}) - 1px);
+      font-size: calc(calc(100vh / ${numberOfTrump + 1}) * .90);
+      height: calc(calc(100vh / ${numberOfTrump}) - 1px);
     }
   `],
   template: `
@@ -151,9 +48,108 @@ const failTable = [
   `,
 })
 export class AppComponent {
-  trumpOrder = trumpOrder;
-  pointTable = pointTable;
-  failTable = failTable;
+  trumpOrder = [
+    {
+      suit: 'clubs',
+      card: 'Q',
+      isFirstQueen: true,
+    },
+    {
+      suit: 'diams',
+      card: '7',
+    },
+    {
+      suit: 'spades',
+      card: 'Q',
+    },
+    {
+      suit: 'hearts',
+      card: 'Q',
+    },
+    {
+      suit: 'diams',
+      card: 'Q',
+    },
+    {
+      suit: 'clubs',
+      card: 'J',
+      isFirstJack: true,
+    },
+    {
+      suit: 'spades',
+      card: 'J',
+    },
+    {
+      suit: 'hearts',
+      card: 'J',
+    },
+    {
+      suit: 'diams',
+      card: 'J',
+    },
+    {
+      suit: 'diams',
+      card: 'A',
+    },
+    {
+      suit: 'diams',
+      card: '10',
+    },
+    {
+      suit: 'diams',
+      card: 'K',
+    },
+    {
+      suit: 'diams',
+      card: '9',
+    },
+    {
+      suit: 'diams',
+      card: '8',
+    },
+  ];
+  pointTable = [
+    {
+      card: 'A',
+      value: 11,
+    },
+    {
+      card: '10',
+      value: 10,
+    },
+    {
+      card: 'K',
+      value: 4,
+    },
+    {
+      card: 'Q',
+      value: 3,
+    },
+    {
+      card: 'J',
+      value: 2,
+    },
+  ];
+  failTable = [
+    {
+      card: 'A',
+    },
+    {
+      card: '10',
+    },
+    {
+      card: 'K',
+    },
+    {
+      card: '9',
+    },
+    {
+      card: '8',
+    },
+    {
+      card: '7',
+    },
+  ];
 
   formatCardText(trump): string {
     return `<span class="suit ${trump.suit}">&${trump.suit};</span>`;
