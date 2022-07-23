@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import { failTable, pointTable, trumpOrder } from './cards';
 
 const numberOfTrump = trumpOrder.length;
@@ -43,11 +43,11 @@ const numberOfTrump = trumpOrder.length;
           <div class="fail-wrapper">
             <div class="fail-cards">
               <ng-template ngFor let-card [ngForOf]="failTable">
-                <span class="clubs"> &clubs;</span>
+                <span class="clubs">&clubs;</span>
 
-                <span class="spades"> &spades;</span>
+                <span class="spades">&spades;</span>
 
-                <span class="hearts"> &hearts;</span>
+                <span class="hearts">&hearts;</span>
 
                 {{card.card}}</ng-template>
             </div>
@@ -57,10 +57,14 @@ const numberOfTrump = trumpOrder.length;
     </div>
   `,
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   trumpOrder = trumpOrder;
   pointTable = pointTable;
   failTable = failTable;
+
+  lock
+
+  boundResize
 
 
   formatCardText(trump): string {
@@ -68,8 +72,13 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    window.addEventListener('resize', this.resize.bind(this));
+    this.boundResize = this.resize.bind(this)
+    window.addEventListener('resize', this.boundResize);
     this.resize();
+  }
+
+  ngOnDestroy() {
+    window.removeEventListener('resize', this.boundResize)
   }
 
   resize(): void {
@@ -77,9 +86,20 @@ export class AppComponent implements OnInit {
     document.documentElement.style.setProperty('--vh', `${vh}px`);
   }
 
-  onDoubleClick(): void {
+  async onDoubleClick() {
     console.log('double clicked');
-    if (document.fullscreen) document.exitFullscreen();
-    else document.documentElement.requestFullscreen();
+    if (document.fullscreen) {
+      this.lock?.release()
+      document.exitFullscreen();
+    } else {
+      try {
+        // @ts-ignore
+        this.lock = await navigator.wakeLock.request('screen');
+        console.log(this.lock);
+      }catch(e) {
+        console.log(e);
+      }
+      document.documentElement.requestFullscreen();
+    }
   }
 }
